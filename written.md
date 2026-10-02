@@ -253,3 +253,4 @@ def safe_divide(a,b):
 	except (ValueError,ZeroDivisionError):
 		return None
 ```
+这里的except可以一次处理多个异常,if需要多次判定，无论是性能上还是代码简洁上都不如try_except
