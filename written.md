@@ -243,4 +243,13 @@
 	"
 	请写出函数代码，并说明：为什么这里用 `try/except` 比先用 `if` 判断再计算更好？
 	
-	（在此作答）
+	**答**
+	```
+	def safe_divide(a,b):
+		a=input()
+		b=input()
+		try:
+			return float(a)/float(b)
+		except (ValueError,ZeroDivisionError):
+			return None
+	```
