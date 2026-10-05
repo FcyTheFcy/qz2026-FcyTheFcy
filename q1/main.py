@@ -1,5 +1,4 @@
 import json
-import os
 def analyze_log(filepath:str)->dict:
     try:
         with open(filepath,encoding="utf-8")as fl:
