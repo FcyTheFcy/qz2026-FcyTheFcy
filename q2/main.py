@@ -1,44 +1,41 @@
 import json
-import os
-
 class UserManager:
     def __init__(self):
-        self.user_cnt=0
-        self.user_list=[{}]
-        self.empty_id=[]
+        self.user_dict={
+            "cnt":0
+        }
     def add_user(self,name:str,age:int)->dict:
-        get_id=0
-        if(len(self.empty_id)):
-            get_id=self.empty_id[0]
-            del self.empty_id[0]
-        else:
-            user_cnt=user_cnt+1
-            get_id=user_cnt
-        user_dict_tmp={
-            "id":get_id,
+        self.user_dict["cnt"]=self.user_dict["cnt"]+1
+        dict_tmp={
+            "id":self.user_dict["cnt"],
             "name":name,
             "age":age,
         }
-        self.user_list.append(user_dict_tmp)
-        return user_dict_tmp
+        self.user_dict[self.user_dict["cnt"]]=dict_tmp
     def find(self,id:int)->dict:
-        if(id<1 or id>self.user_cnt):
-            return None
-        if(id in self.empty_id):
-            return None
-        return self.user_list[id]
+        return self.user_dict.get(id)
     def update_age(self,id:int,age:int)->bool:
-        if(id<1 or id>self.user_cnt):
+        if(self.user_dict.get(id)==None):
             return False
-        if(id in self.empty_id):
-            return False
-        self.user_list[id]["age"]=age
+        self.user_dict[id]=age
         return True
     def remove_user(self,id:int)->bool:
-        pass
-    def list():
-        pass
-    def save_all():
-        pass
-    def load():
-        pass
+        if(self.user_dict.get(id)==None):
+            return False
+        if(id==self.user_dict["cnt"]):
+            self.user_dict["cnt"]=self.user_dict["cnt"]-1
+        del self.user_dict[id]
+        return True
+    def list(self):
+        for i in self.user_dict.keys():
+            if(i=="cnt"):
+                continue
+            print(self.user_dict[i])
+    def save(self):
+        with open("users.json",encoding="utf-8",mode="w")as fl:
+            json.dump(self.user_dict,fl,ensure_ascii=False,indent=4)
+    def load(self):
+        with open("users.json",encoding="utf-8",mode="r")as fl:
+            self.user_dict=json.load(fl)
+if __name__=="__main__":
+    pass
