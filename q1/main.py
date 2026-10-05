@@ -32,5 +32,5 @@ def analyze_log(filepath:str)->dict:
         return {}
 
 
-if __name__==__main__:
+if __name__=="__main__":
     pass
