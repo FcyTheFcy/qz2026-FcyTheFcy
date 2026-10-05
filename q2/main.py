@@ -2,6 +2,7 @@ import json
 import os
 
 class UserManager:
+    
     def __init__():
         pass
     def add_user()->dict:
