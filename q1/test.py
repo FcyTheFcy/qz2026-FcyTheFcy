@@ -6,6 +6,6 @@ import json
 
 if __name__=="__main__":
     dic=main.analyze_log("test.jsonl")
-    dic=json.dumps(dic,indent=4)
+    dic=json.dumps(dic,ensure_ascii=False,indent=4)
     with open("test_out.json",mode="w",encoding="utf-8") as output:
         output.write(dic)
